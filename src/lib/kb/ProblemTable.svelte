@@ -26,7 +26,7 @@
       {@const p = PROBLEMS[g.problem]}
       <tr>
         <td><code>{g.problem}</code> {p.title}</td>
-        <td><strong>{g.reports.length}</strong></td>
+        <td><strong>{g.reports.length}</strong>{#if g.alsoIn}<sup>*</sup>{/if}</td>
         <td>{g.mistagged}</td>
         <td>{g.tenants}</td>
         <td>{g.firstSeen} → {g.lastSeen}</td>
@@ -36,6 +36,12 @@
   </tbody>
 </table>
 
+{#each split.groups.filter((g) => g.alsoIn) as g (g.problem)}
+  <p class="note">* {g.alsoIn?.count} of the <code>{g.problem}</code> reports were read as a one-day move: counted under
+    <code>{g.problem}</code> by tenant, as the desk counts, and listed again under <code>one-day</code>.</p>
+{/each}
+
 <style>
   .sum { font-size: 1.1rem; }
+  .note { color: var(--muted); font-size: 0.85em; }
 </style>

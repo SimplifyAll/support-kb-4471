@@ -1,7 +1,8 @@
-// The problems inside one merged ticket. Built on causes.ts: the cause comes from the tenant
-// (locale + booking form), never from intake's tag. On top of that, the reports the desk itself
-// read as a one-day move (desk-notes.json) are their own problem: the date shifts by a day, the
-// month does not flip, so neither the parser fix nor the hint fix touches them.
+// The problems inside one merged ticket, counted the way the desk counts (causes.ts, as in
+// CauseTable): every report under the cause its tenant gives it (locale + booking form), never
+// under intake's tag. The reports the desk read as a one-day move (desk-notes.json) are their own
+// problem: the date shifts by a day, the month does not flip. As the desk does, they stay counted
+// where they are filed, and the one-day row lists them again.
 import { causeOf, uniqueById, type Report, type Tenant } from '#lib/kb/causes';
 
 export type Problem = 'parser' | 'hint' | 'one-day' | 'unplaced';
@@ -15,10 +16,6 @@ export const PROBLEMS: Record<Problem, { title: string; ticket: number | null }>
 
 export const TICKET_REPO = 'https://github.com/SimplifyAll/support-kb-4471/issues';
 
-export function problemOf(r: Report, t: Tenant | undefined, oneDayMove: readonly string[]): Problem {
-  if (oneDayMove.includes(r.id)) return 'one-day';
-  return causeOf(r, t) ?? 'unplaced';
-}
 
 export type ProblemGroup = {
   problem: Problem;
@@ -28,6 +25,8 @@ export type ProblemGroup = {
   lastSeen: string;
   // How many of these intake tagged as something else.
   mistagged: number;
+  // Of these, how many are also listed under another problem (one-day reports, by their filing).
+  alsoIn: { problem: Problem; count: number } | null;
 };
 
 export function splitTicket(
@@ -39,11 +38,14 @@ export function splitTicket(
   const reports = uniqueById(all).filter((r) => r.mergedInto === ticket);
   const by = new Map<Problem, Report[]>();
   for (const r of reports) {
-    const p = problemOf(r, tenantOf(r), oneDayMove);
+    const p: Problem = causeOf(r, tenantOf(r)) ?? 'unplaced';
     by.set(p, [...(by.get(p) ?? []), r]);
   }
+  const moved = reports.filter((r) => oneDayMove.includes(r.id));
+  if (moved.length) by.set('one-day', moved);
   const groups = [...by.entries()]
     .map(([problem, rs]) => {
+      const inOneDay = problem === 'one-day' ? 0 : rs.filter((r) => oneDayMove.includes(r.id)).length;
       const days = rs.map((r) => r.receivedAt.slice(0, 10)).sort();
       return {
         problem,
@@ -52,6 +54,7 @@ export function splitTicket(
         firstSeen: days[0],
         lastSeen: days[days.length - 1],
         mistagged: rs.filter((r) => r.meta.intakeTag !== problem).length,
+        alsoIn: inOneDay ? { problem: 'one-day' as Problem, count: inOneDay } : null,
       };
     })
     .sort((a, b) => b.reports.length - a.reports.length);
