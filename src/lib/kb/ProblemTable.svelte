@@ -19,7 +19,7 @@
 
 <table>
   <thead>
-    <tr><th>problem</th><th>reports</th><th>intake tagged otherwise</th><th>tenants</th><th>seen</th><th>ticket</th></tr>
+    <tr><th>problem</th><th>reports</th><th>intake tagged otherwise</th><th>tenants</th><th>seen</th><th>ticket</th><th>state</th></tr>
   </thead>
   <tbody>
     {#each split.groups as g (g.problem)}
@@ -31,6 +31,7 @@
         <td>{g.tenants}</td>
         <td>{g.firstSeen} → {g.lastSeen}</td>
         <td>{#if p.ticket}<a href="{TICKET_REPO}/{p.ticket}">#{p.ticket}</a>{:else}none{/if}</td>
+        <td>{p.state}</td>
       </tr>
     {/each}
   </tbody>

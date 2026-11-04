@@ -7,11 +7,12 @@ import { causeOf, uniqueById, type Report, type Tenant } from '#lib/kb/causes';
 
 export type Problem = 'parser' | 'hint' | 'one-day' | 'unplaced';
 
-export const PROBLEMS: Record<Problem, { title: string; ticket: number | null }> = {
-  parser: { title: 'Shared parser reads day-first dates month first', ticket: 1 },
-  hint: { title: 'booking-v3 form hints MM/DD/YYYY, then reads the date day first', ticket: 2 },
-  'one-day': { title: 'Booking moves by one day (not a month flip)', ticket: 3 },
-  unplaced: { title: 'No tenant on file: cause unknown', ticket: null },
+// Where each problem stands, from engineering's update on #4471 (closed 5 Oct 2026).
+export const PROBLEMS: Record<Problem, { title: string; ticket: number | null; state: string }> = {
+  parser: { title: 'Shared parser reads day-first dates month first', ticket: 1, state: 'fixed 5 Oct · fix(dates): parse dd/mm for eu locales' },
+  hint: { title: 'booking-v3 form hints MM/DD/YYYY, then reads the date day first', ticket: 2, state: "won't fix · booking-v3 form retired" },
+  'one-day': { title: 'Booking moves by one day (not a month flip)', ticket: 3, state: 'open · no fix yet' },
+  unplaced: { title: 'No tenant on file: cause unknown', ticket: null, state: 'open' },
 };
 
 export const TICKET_REPO = 'https://github.com/SimplifyAll/support-kb-4471/issues';
