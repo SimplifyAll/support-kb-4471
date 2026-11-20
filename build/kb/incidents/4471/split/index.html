@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../../../../_app/immutable/entry/start.BbDL3zTZ.js" rel="modulepreload">
-		<link href="../../../../_app/immutable/chunks/BuZuEn4i.js" rel="modulepreload">
+    <link href="../../../../_app/immutable/entry/start.CFgoUHEQ.js" rel="modulepreload">
+		<link href="../../../../_app/immutable/chunks/D4ekciHM.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/W8JXJZ79.js" rel="modulepreload">
-		<link href="../../../../_app/immutable/entry/app.CZom6Fy6.js" rel="modulepreload">
+		<link href="../../../../_app/immutable/entry/app.BROsSOgq.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/nodes/0.DH-1dZK1.js" rel="modulepreload">
-		<link href="../../../../_app/immutable/nodes/5.C_svAY5E.js" rel="modulepreload">
-		<link href="../../../../_app/immutable/chunks/CNVIPK5L.js" rel="modulepreload">
+		<link href="../../../../_app/immutable/nodes/5.CuMXA6j2.js" rel="modulepreload">
+		<link href="../../../../_app/immutable/chunks/CW6xPrNt.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/DooIRhXB.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/CVBzP17p.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/CrgYNgkp.js" rel="modulepreload">
@@ -20,7 +20,7 @@
 		<link href="../../../../_app/immutable/assets/_page.l10rmzXo.css" rel="stylesheet">
   </head>
   <body>
-    <div style="display: contents"><!--[--><!--[0--><!--[--><!--[--><div class="kb svelte-e2jw2j"><header><a class="crumb svelte-e2jw2j" href="/kb">support desk · kb</a> <h1 class="svelte-e2jw2j">#4471 · what it shows: three problems, not one</h1> <p class="meta svelte-e2jw2j"><span>owner <b>Dawid Stelmach</b></span> <span class="status proposed svelte-e2jw2j">proposed</span> <span class="svelte-e2jw2j">reviewed 2026-11-04 · 0 days ago</span></p></header> <!--[-1--><!--]--> <main><p><a href="/kb/incidents/4471">#4471</a> was marked <strong>known: one issue, one fix queued</strong>. The reports merged
+    <div style="display: contents"><!--[--><!--[0--><!--[--><!--[--><div class="kb svelte-e2jw2j"><header><a class="crumb svelte-e2jw2j" href="/kb">support desk · kb</a> <h1 class="svelte-e2jw2j">#4471 · what it shows: three problems, not one</h1> <p class="meta svelte-e2jw2j"><span>owner <b>Dawid Stelmach</b></span> <span class="status proposed svelte-e2jw2j">proposed</span> <span class="svelte-e2jw2j">reviewed 2026-11-04 · 16 days ago</span></p></header> <!--[-1--><!--]--> <main><p><a href="/kb/incidents/4471">#4471</a> was marked <strong>known: one issue, one fix queued</strong>. The reports merged
 into it describe three different problems. Each problem has its own ticket.</p> <p>Engineering closed #4471 on 5 October: the parser fix shipped, and the booking-v3 form was
 retired, so its hint will not be fixed. That ends two of the three problems. The third, <code>one-day</code>, has no fix and its ticket stays open.</p> <aside class="warn svelte-17bri61"><!---->A report of a booking that moved by one day is not #4471 and is not fixed. File it under <a href="https://github.com/SimplifyAll/support-kb-4471/issues/3">#3</a>, not under the closed #4471.<!----></aside><!----> <h2>What is in #4471</h2> <p class="sum svelte-1op6c6"><strong>412</strong> reports in #4471
   (15 repeated rows from overlapping export pages left out) · <strong>3</strong> problems</p> <table><thead><tr><th>problem</th><th>reports</th><th>intake tagged otherwise</th><th>tenants</th><th>seen</th><th>ticket</th><th>state</th></tr></thead><tbody><!--[--><tr><td><code>parser</code> Shared parser reads day-first dates month first</td><td><strong>379</strong><!--[0--><sup>*</sup><!--]--></td><td>23</td><td>11</td><td>2026-04-01 → 2026-10-04</td><td><!--[0--><a href="https://github.com/SimplifyAll/support-kb-4471/issues/1">#1</a><!--]--></td><td>fixed 5 Oct · fix(dates): parse dd/mm for eu locales</td></tr><tr><td><code>hint</code> booking-v3 form hints MM/DD/YYYY, then reads the date day first</td><td><strong>33</strong><!--[-1--><!--]--></td><td>15</td><td>3</td><td>2026-04-17 → 2026-09-22</td><td><!--[0--><a href="https://github.com/SimplifyAll/support-kb-4471/issues/2">#2</a><!--]--></td><td>won't fix · booking-v3 form retired</td></tr><tr><td><code>one-day</code> Booking moves by one day (not a month flip)</td><td><strong>5</strong><!--[-1--><!--]--></td><td>5</td><td>5</td><td>2026-04-02 → 2026-10-04</td><td><!--[0--><a href="https://github.com/SimplifyAll/support-kb-4471/issues/3">#3</a><!--]--></td><td>open · no fix yet</td></tr><!--]--></tbody></table> <!--[--><p class="note svelte-1op6c6">* 5 of the <code>parser</code> reports were read as a one-day move: counted under <code>parser</code> by tenant, as the desk counts, and listed again under <code>one-day</code>.</p><!--]--><!----> <p>The counts come from the data at render time. Each report is placed by its <strong>tenant</strong>: the
@@ -38,19 +38,19 @@ nor retiring booking-v3 touches them. <strong>Still open.</strong></p> <h2>Why t
 the same few subjects (“Wrong day on the invite”, “Date is wrong”) cover all three problems.
 Its consequences only mention the opposite case: one bug split across different subjects. They
 don’t cover one subject holding several bugs. When a big ticket’s reports split by tenant,
-channel or form, read the bodies before you mark it known.</p> <!--[0--><p class="stamp svelte-1280m42">desk ref <b class="svelte-1280m42">DR-K29D-AVV3</b></p><!--]--><!----><!----></main> <footer class="svelte-e2jw2j">Pages are written by people. Tables and charts are built from data at render time.</footer></div><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+channel or form, read the bodies before you mark it known.</p> <!--[0--><p class="stamp svelte-1280m42">desk ref <b class="svelte-1280m42">DR-6NTG-5DDS</b></p><!--]--><!----><!----></main> <footer class="svelte-e2jw2j">Pages are written by people. Tables and charts are built from data at render time.</footer></div><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_61dv7e = {
+					__sveltekit_1ngb41d = {
 						base: new URL("../../../..", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("../../../../_app/immutable/entry/start.BbDL3zTZ.js"),
-						import("../../../../_app/immutable/entry/app.CZom6Fy6.js")
+						import("../../../../_app/immutable/entry/start.CFgoUHEQ.js"),
+						import("../../../../_app/immutable/entry/app.BROsSOgq.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 5],
